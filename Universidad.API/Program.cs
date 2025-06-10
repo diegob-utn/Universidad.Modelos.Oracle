@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace Universidad.API
 {
@@ -14,7 +15,10 @@ namespace Universidad.API
             //    throw new InvalidOperationException("Connection string 'OracleConnection' not found.")));
 
             builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseOracle(builder.Configuration.GetConnectionString("OracleConnection")));
+                //options.UseOracle(builder.Configuration.GetConnectionString("OracleConnection")));
+
+
+            options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres") ?? throw new InvalidOperationException("Connection string 'AppDbContext' not found.")));
             // Add services to the container.
 
             //builder.Services.AddControllers();

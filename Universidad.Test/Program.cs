@@ -9,6 +9,16 @@ namespace Universidad.Test
         static void Main(string[] args)
         {
 
+            Crud<Evento>.EndPoint = "https://localhost:7270/api/Eventos";
+            Crud<Certificado>.EndPoint = "https://localhost:7270/api/Certificados";
+            Crud<Inscripcion>.EndPoint = "https://localhost:7270/api/Inscripciones";
+            Crud<Pago>.EndPoint = "https://localhost:7270/api/Pagos";
+            Crud<Participante>.EndPoint = "https://localhost:7270/api/Participantes";
+            Crud<Ponente>.EndPoint = "https://localhost:7270/api/Ponentes";
+            Crud<Sesion>.EndPoint = "https://localhost:7270/api/Sesiones";
+
+
+
             // Agregar datos a todas las tablas
             AgregarDatosATodas();
 

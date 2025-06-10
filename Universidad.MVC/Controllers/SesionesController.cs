@@ -68,13 +68,17 @@ namespace Universidad.MVC.Controllers
         {
             try
             {
+                // Normaliza las fechas a UTC
+                data.HoraInicio = DateTime.SpecifyKind(data.HoraInicio, DateTimeKind.Utc);
+                data.HoraFin = DateTime.SpecifyKind(data.HoraFin, DateTimeKind.Utc);
+
                 Crud<Sesion>.Update(id, data);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", ex.Message);
-                return View();
+                return View(data);
             }
         }
 

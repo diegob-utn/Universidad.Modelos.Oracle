@@ -7,7 +7,6 @@ namespace Universidad.MVC
     {
         public static void Main(string[] args)
         {
-
             Crud<Evento>.EndPoint = "https://localhost:7270/api/Eventos";
             Crud<Certificado>.EndPoint = "https://localhost:7270/api/Certificados";
             Crud<Inscripcion>.EndPoint = "https://localhost:7270/api/Inscripciones";
@@ -15,6 +14,8 @@ namespace Universidad.MVC
             Crud<Participante>.EndPoint = "https://localhost:7270/api/Participantes";
             Crud<Ponente>.EndPoint = "https://localhost:7270/api/Ponentes";
             Crud<Sesion>.EndPoint = "https://localhost:7270/api/Sesiones";
+            Crud<EventoPonente>.EndPoint = "https://localhost:7270/api/EventoPonentes";
+            Crud<PonenteSesion>.EndPoint = "https://localhost:7270/api/PonenteSesiones";
 
 
             var builder = WebApplication.CreateBuilder(args);
@@ -25,7 +26,7 @@ namespace Universidad.MVC
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if(!app.Environment.IsDevelopment())
+            if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.

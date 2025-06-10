@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Universidad.Modelos.Sesion>
+@model IEnumerable<Universidad.Modelos.Pago>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Pagos</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -16,16 +16,13 @@
                 @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HoraInicio)
+                @Html.DisplayNameFor(model => model.Fecha)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HoraFin)
+                @Html.DisplayNameFor(model => model.Medio)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Lugar)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Evento)
+                @Html.DisplayNameFor(model => model.InscripcionId)
             </th>
             <th></th>
         </tr>
@@ -37,16 +34,13 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HoraInicio)
+                @Html.DisplayFor(modelItem => item.Fecha)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HoraFin)
+                @Html.DisplayFor(modelItem => item.Medio)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Lugar)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Evento.Nombre)
+                @Html.DisplayFor(modelItem => item.InscripcionId)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new {id=item.Id }) |

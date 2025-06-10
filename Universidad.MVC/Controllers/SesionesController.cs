@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Universidad.API.Consumer;
 using Universidad.Modelos;
 
@@ -25,9 +26,24 @@ namespace Universidad.MVC.Controllers
         // GET: SesionesController/Create
         public ActionResult Create()
         {
-            
+            ViewBag.Eventos = GetEventos();  // 1 forma de enviar datos de otro modelo-ontrolador    forma trejo
+
+           // ViewData["Eventos"] = GetEventos();
             return View();
         }
+
+        private List<SelectListItem> GetEventos()
+        {
+            var eventos = Crud<Evento>.GetAll();
+            return eventos.Select(e => new SelectListItem
+            {
+                Value = e.Id.ToString(),
+                Text = e.Nombre
+            }).ToList();
+        }
+
+
+           
 
         // POST: SesionesController/Create
         [HttpPost]
@@ -58,6 +74,8 @@ namespace Universidad.MVC.Controllers
         public ActionResult Edit(int id)
         {
             var data = Crud<Sesion>.GetById(id);
+
+            ViewBag.Eventos = GetEventos();
             return View(data);
         }
 

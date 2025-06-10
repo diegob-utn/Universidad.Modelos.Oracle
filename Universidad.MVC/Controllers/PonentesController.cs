@@ -5,19 +5,18 @@ using Universidad.Modelos;
 
 namespace Universidad.MVC.Controllers
 {
-    public class PonentesController:Controller
+    public class PonentesController : Controller
     {
         // GET: PonentesController
         public ActionResult Index()
         {
             var data = Crud<Ponente>.GetAll();
             return View(data);
-        }
-
-        // GET: PonentesController/Details/5
+        }        // GET: PonentesController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var data = Crud<Ponente>.GetById(id);
+            return View(data);
         }
 
         // GET: PonentesController/Create
@@ -29,57 +28,68 @@ namespace Universidad.MVC.Controllers
         // POST: PonentesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Ponente data)
         {
             try
             {
+                data.Id = 0;
+                data.Eventos = null;
+                data.Sesiones = null;
+                Crud<Ponente>.Create(data);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ModelState.AddModelError("", ex.Message);
+                return View(data);
             }
         }
 
         // GET: PonentesController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var data = Crud<Ponente>.GetById(id);
+            return View(data);
         }
 
         // POST: PonentesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Ponente data)
         {
             try
             {
+                Crud<Ponente>.Update(id, data);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ModelState.AddModelError("", ex.Message);
+                return View(data);
             }
         }
 
         // GET: PonentesController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var data = Crud<Ponente>.GetById(id);
+            return View(data);
         }
 
         // POST: PonentesController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Ponente data)
         {
             try
             {
+                Crud<Ponente>.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ModelState.AddModelError("", ex.Message);
+                return View(data);
             }
         }
     }

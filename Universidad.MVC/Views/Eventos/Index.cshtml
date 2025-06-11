@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Index";
+    int totalEventos = ViewBag.TotalEventos ?? 0;
+    int totalSesiones = ViewBag.TotalSesiones ?? 0;
 }
 
 <h1>Eventos</h1>
@@ -55,5 +57,13 @@
             </td>
         </tr>
 }
+     
     </tbody>
 </table>
+
+Total Eventos: @ViewBag.TotalEventos
+<br />
+Otra forma de conteo: @Model.Count()
+<br />
+
+Total Sesiones: @ViewBag.TotalSesiones

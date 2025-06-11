@@ -40,9 +40,62 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Tipo)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+        <dd class="col-sm-10">
+          Total Sesiones de este Evento: @(Model.Sesiones.Count())
+        </dd>
     </dl>
 </div>
+
+<table class="table">
+  <thead>
+    <tr>
+            <th>Id</th>
+            <th>HoraInicio</th>
+            <th>Horafin</th>
+    </tr>
+  </thead>
+
+
+@foreach(var sesion in Model.Sesiones)
+{
+    <tr>
+      <td>
+        <a asp-action="Details" asp-controller="Sesiones" asp-route-id="@sesion.Id">@sesion.Lugar</a>
+      </td>
+        <td>@sesion.HoraInicio</td>
+        <td>@sesion.HoraFin</td>
+    </tr>
+}
+
+
+</table>
+
 <div>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id}) |
     <a asp-action="Index">Back to List</a>
 </div>
+
+<table>
+
+  <thead>
+    <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @foreach (var participante in Model.Participantes)
+    {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-controller="Participantes" asp-route-id="@participante.Id">@participante.Nombre</a>
+            </td>
+            <td>@participante.Apellido</td>
+        </tr>
+        }
+  </tbody>
+</table>

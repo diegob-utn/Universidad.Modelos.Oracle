@@ -32,6 +32,19 @@ namespace Universidad.API.Controllers
             return data;
         }
 
+
+        [HttpGet("/Sesion/{id}")]
+        public async Task<ActionResult<IEnumerable<Ponente>>> GetPonentesbySesiones(int id)
+        {
+            var data = await _context.Ponentes
+                .Where(p => p.EventoId == id)
+                .Include(p => p.Eventos)
+                .Include(p => p.Sesiones)
+                .ToListAsync();
+
+            return data;
+        }
+
         // GET: api/Ponentes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Ponente>> GetPonente(int id)

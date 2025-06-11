@@ -33,6 +33,19 @@ namespace Universidad.API.Controllers
             return data;
         }
 
+        [HttpGet("/Evento/{id}")]
+        public async Task<ActionResult<IEnumerable<Sesion>>> GetSesionesbyEvento(int id)
+        {
+            var data = await _context.Sesiones
+                .Where(s => s.EventoId == id)
+                .Include(s => s.Evento)
+                .Include(s => s.Participantes)
+                .Include(s => s.Ponentes)
+                .ToListAsync();
+
+            return data;
+        }
+
         // GET: api/Sesiones/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Sesion>> GetSesion(int id)

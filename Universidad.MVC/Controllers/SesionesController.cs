@@ -20,6 +20,7 @@ namespace Universidad.MVC.Controllers
         public ActionResult Details(int id)
         {
             var data = Crud<Sesion>.GetById(id);
+            data.Ponentes = Crud<Ponente>.GetBy("ponentes", id);
             return View(data);
         }
 

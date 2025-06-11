@@ -16,6 +16,7 @@ namespace Universidad.MVC.Controllers
         public ActionResult Details(int id)
         {
             var data = Crud<Ponente>.GetById(id);
+            data.Eventos = Crud<Evento>.GetBy("ponente", id);
             return View(data);
         }
 

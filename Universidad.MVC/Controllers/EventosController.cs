@@ -11,11 +11,14 @@ namespace Universidad.MVC.Controllers
         public ActionResult Index()
         {
             var data = Crud<Evento>.GetAll();
+            ViewBag.TotalEventos = data.Count; // Ejemplo de cómo enviar datos adicionales a la vista
+            ViewBag.TotalSesiones = Crud<Sesion>.GetAll().Count;
             return View(data);
         }        // GET: EventosController/Details/5
         public ActionResult Details(int id)
         {
             var data = Crud<Evento>.GetById(id);
+            data.Sesiones = Crud<Sesion>.GetBy("evento", id);
             return View(data);
         }
 
